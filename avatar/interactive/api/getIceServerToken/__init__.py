@@ -15,6 +15,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Define token endpoint
     token_endpoint = f"https://{region}.tts.speech.microsoft.com/cognitiveservices/avatar/relay/token/v1"
 
+    logging.info(token_endpoint)
+    logging.info(response.status_code)
+    logging.info(response.json())
+    
     # Make HTTP request with subscription key as header
     response = requests.get(token_endpoint, headers={"Ocp-Apim-Subscription-Key": subscription_key})
 
