@@ -43,16 +43,19 @@ messages = [{ "role": "system", "content": system_prompt }];
 function SwitchMeg() {
   TalkingAvatarCharacter = "meg"
   TalkingAvatarStyle = "formal"
+  connectToAvatarService();
 }
 
 function SwitchLisa() {
   TalkingAvatarCharacter = "lisa"
   TalkingAvatarStyle = "casual-sitting"
+  connectToAvatarService();
 }
 
 function SwitchHarry() {
   TalkingAvatarCharacter = "harry"
   TalkingAvatarStyle = "formal"
+  connectToAvatarService();
 
 }
 
