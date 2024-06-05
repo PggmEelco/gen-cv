@@ -12,7 +12,7 @@ var system_prompt = `You are an AI assistant focused on delivering brief product
 - Pay attention to the language the customer is using in their latest statement and respond in the same language!
 `
 
-const TTSVoice = "en-US-JennyMultilingualNeural" // Update this value if you want to use a different voice
+const TTSVoice = "en-US-AvaMultilingualNeural" //"en-US-JennyMultilingualNeural" // Update this value if you want to use a different voice
 
 const CogSvcRegion = "westeurope" // Fill your Azure cognitive services region here, e.g. westus2
 
@@ -22,8 +22,8 @@ let IceServerCredential
 
 let TalkingAvatarCharacter = "meg"
 let TalkingAvatarStyle = "formal"
+let AvatarName = "Meg"
 
-const Voice = "en-US-AvaMultilingualNeural"
 const GreetingLanguage = "nl-NL"
 
 supported_languages = ["nl-NL", "en-US", "de-DE"] // The language detection engine supports a maximum of 4 languages
@@ -42,18 +42,21 @@ messages = [{ "role": "system", "content": system_prompt }];
 
 function SwitchMeg() {
   TalkingAvatarCharacter = "meg"
+  AvatarName = "Meg"
   TalkingAvatarStyle = "formal"
   connectToAvatarService();
 }
 
 function SwitchLisa() {
   TalkingAvatarCharacter = "lisa"
+  AvatarName = "Lisa"
   TalkingAvatarStyle = "casual-sitting"
   connectToAvatarService();
 }
 
-function SwitchHarry() {
-  TalkingAvatarCharacter = "harry"
+function SwitchMax() {
+  TalkingAvatarCharacter = "max"
+  AvatarName = "Max"
   TalkingAvatarStyle = "formal"
   connectToAvatarService();
 }
@@ -235,10 +238,10 @@ window.startSession = () => {
 }
 
 async function greeting() {
-  var greeting = "Hallo, mijn naam is Lisa. Waar kan ik je mee helpen?"
+  var greeting = "Hallo, mijn naam is " + AvatarName +". Waar kan ik je mee helpen?"
   addToConversationHistory(greeting, "light")
 
-  let spokenText = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'><voice xml:lang='${GreetingLanguage}' xml:gender='Female' name='${Voice}'><lang xml:lang="${GreetingLanguage}">${greeting}</lang></voice></speak>`
+  let spokenText = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'><voice xml:lang='${GreetingLanguage}' xml:gender='Female' name='${TTSVoice}'><lang xml:lang="${GreetingLanguage}">${greeting}</lang></voice></speak>`
   avatarSynthesizer.speakSsmlAsync(spokenText, (result) => {
     if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
       console.log("Speech synthesized to speaker for text [ " + spokenText + " ]. Result ID: " + result.resultId)
@@ -268,7 +271,7 @@ window.speak = (text) => {
 
         const generatedResult = await generateText(text);
 
-        let spokenTextssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'><voice xml:lang='en-US' xml:gender='Female' name='${Voice}'><lang xml:lang="${language}">${generatedResult}</lang></voice></speak>`
+        let spokenTextssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'><voice xml:lang='en-US' xml:gender='Female' name='${TTSVoice}'><lang xml:lang="${language}">${generatedResult}</lang></voice></speak>`
 
         if (language == 'ar-AE') {
           spokenTextssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'><voice xml:lang='en-US' xml:gender='Female' name='ar-AE-FatimaNeural'><lang xml:lang="${language}">${generatedResult}</lang></voice></speak>`
