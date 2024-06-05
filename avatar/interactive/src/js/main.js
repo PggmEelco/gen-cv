@@ -12,7 +12,7 @@ var system_prompt = `You are an AI assistant focused on delivering brief product
 - Pay attention to the language the customer is using in their latest statement and respond in the same language!
 `
 
-const TTSVoice = "en-US-AvaMultilingualNeural" //"en-US-JennyMultilingualNeural" // Update this value if you want to use a different voice
+let TTSVoice = "en-US-AvaMultilingualNeural" //"en-US-JennyMultilingualNeural" // Update this value if you want to use a different voice
 
 const CogSvcRegion = "westeurope" // Fill your Azure cognitive services region here, e.g. westus2
 
@@ -44,6 +44,7 @@ function SwitchMeg() {
   TalkingAvatarCharacter = "meg"
   AvatarName = "Meg"
   TalkingAvatarStyle = "formal"
+  TTSVoice = "en-US-AvaMultilingualNeural"
   connectToAvatarService();
 }
 
@@ -51,6 +52,7 @@ function SwitchLisa() {
   TalkingAvatarCharacter = "lisa"
   AvatarName = "Lisa"
   TalkingAvatarStyle = "casual-sitting"
+  TTSVoice = "en-US-EmmaMultilingualNeural"
   connectToAvatarService();
 }
 
@@ -58,6 +60,7 @@ function SwitchMax() {
   TalkingAvatarCharacter = "max"
   AvatarName = "Max"
   TalkingAvatarStyle = "formal"
+  TTSVoice = "en-US-BrianMultilingualNeural"
   connectToAvatarService();
 }
 
