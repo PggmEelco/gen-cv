@@ -71,7 +71,8 @@
           Klik op microfoon om te beginnen
         </label>
       </fluent-card>
-      <fluent-text-field appearance="outline" placeholder="Typ hier je vraag" id="chatInput" onkeypress="window.sendChat(event)"></fluent-text-field>
+      <fluent-text-field appearance="outline" placeholder="Typ hier je vraag" id="chatInput"></fluent-text-field>
+      <button id="sendButton" onclick="chatInput()">Verstuur</button>
     </div>
 
     <div class="main-block">
@@ -89,6 +90,15 @@
 
         <button id="playVideo" onclick="window.startSession()">
           <span id="playVideo__text" class="playVideo__text">Login</span>
+        </button>
+        <button id="Lisa" onclick="SwitchLisa()">
+          <span id="Lisa__text" class="Lisa__text">Lisa</span>
+        </button>
+        <button id="Harry" onclick="SwitchHarry()">
+          <span id="Harry__text" class="Harry__text">Harry</span>
+        </button>
+        <button id="Meg" onclick="SwitchMeg()">
+          <span id="Meg__text" class="Meg__text">Meg</span>
         </button>
       </div>
     </div>

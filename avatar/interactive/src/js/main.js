@@ -56,6 +56,11 @@ function SwitchHarry() {
   TalkingAvatarCharacter = "harry"
   TalkingAvatarStyle = "formal"
   connectToAvatarService();
+}
+
+function TextToSpeak() {
+  let text = document.getElementById("chatInput").value;
+  window.speak(text);
 
 }
 
