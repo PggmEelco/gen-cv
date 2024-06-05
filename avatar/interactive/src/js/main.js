@@ -45,7 +45,6 @@ function SwitchMeg() {
   AvatarName = "Meg"
   TalkingAvatarStyle = "formal"
   TTSVoice = "en-US-AvaMultilingualNeural"
-  connectToAvatarService();
 }
 
 function SwitchLisa() {
@@ -53,7 +52,7 @@ function SwitchLisa() {
   AvatarName = "Lisa"
   TalkingAvatarStyle = "casual-sitting"
   TTSVoice = "en-US-EmmaMultilingualNeural"
-  connectToAvatarService();
+
 }
 
 function SwitchMax() {
@@ -61,7 +60,6 @@ function SwitchMax() {
   AvatarName = "Max"
   TalkingAvatarStyle = "formal"
   TTSVoice = "en-US-BrianMultilingualNeural"
-  connectToAvatarService();
 }
 
 function TextToSpeak() {

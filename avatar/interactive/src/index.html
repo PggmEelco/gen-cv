@@ -21,9 +21,6 @@
 
     <ul class="menu-items">
       <li>Meer info</li>
-      <li onclick="SwitchMeg()">Meg</li>
-      <li onclick="SwitchLisa()">Lisa</li>
-      <li onclick="SwitchHarry()">Harry</li>
     </ul>
   </div>
 
@@ -94,13 +91,13 @@
         <button id="playVideo" onclick="window.startSession()">
           <span id="playVideo__text" class="playVideo__text">Login</span>
         </button>
-        <button id="Lisa" onclick="SwitchLisa()">
+        <button id="Lisa" onclick="SwitchLisa();window.startSession()">
           <span id="Lisa__text" class="Lisa__text">Lisa</span>
         </button>
-        <button id="Harry" onclick="SwitchMax()">
+        <button id="Harry" onclick="SwitchMax();window.startSession()">
           <span id="Harry__text" class="Harry__text">Max</span>
         </button>
-        <button id="Meg" onclick="SwitchMeg()">
+        <button id="Meg" onclick="SwitchMeg();window.startSession()">
           <span id="Meg__text" class="Meg__text">Meg</span>
         </button>
       </div>
