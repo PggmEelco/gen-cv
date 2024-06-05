@@ -34,6 +34,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     language_code = data['documents'][0]['detectedLanguage']['iso6391Name']
 
     language_to_voice = {
+        "nl": "nl-NL",
         "de": "de-DE",
         "en": "en-US",
         "es": "es-ES",

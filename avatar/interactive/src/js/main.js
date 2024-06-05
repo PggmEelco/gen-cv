@@ -26,7 +26,7 @@ let AvatarName = "Meg"
 
 const GreetingLanguage = "nl-NL"
 
-supported_languages = ["nl-NL", "en-US", "de-DE"] // The language detection engine supports a maximum of 4 languages
+supported_languages = ["nl-NL", "en-US", "de-DE", "fr-FR"] // The language detection engine supports a maximum of 4 languages
 
 let token
 
