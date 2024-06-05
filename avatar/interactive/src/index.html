@@ -22,6 +22,8 @@
     <ul class="menu-items">
       <li>Meer info</li>
       <li onclick="SwitchMeg()">Meg</li>
+      <li onclick="SwitchLisa()">Lisa</li>
+      <li onclick="SwitchHarry()">Harry</li>
     </ul>
   </div>
 
@@ -69,6 +71,7 @@
           Klik op microfoon om te beginnen
         </label>
       </fluent-card>
+      <fluent-text-field appearance="outline" placeholder="Typ hier je vraag" id="chatInput" onkeypress="window.sendChat(event)"></fluent-text-field>
     </div>
 
     <div class="main-block">

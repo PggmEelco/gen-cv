@@ -20,8 +20,8 @@ const IceServerUrl = "turn:relay.communication.microsoft.com:3478" // Fill your 
 let IceServerUsername
 let IceServerCredential
 
-const TalkingAvatarCharacter = "lisa"
-const TalkingAvatarStyle = "casual-sitting"
+let TalkingAvatarCharacter = "lisa"
+let TalkingAvatarStyle = "casual-sitting"
 
 const Voice = "en-US-AvaMultilingualNeural"
 const GreetingLanguage = "nl-NL"
@@ -43,6 +43,17 @@ messages = [{ "role": "system", "content": system_prompt }];
 function SwitchMeg() {
   TalkingAvatarCharacter = "meg"
   TalkingAvatarStyle = "formal"
+}
+
+function SwitchLisa() {
+  TalkingAvatarCharacter = "lisa"
+  TalkingAvatarStyle = "casual-sitting"
+}
+
+function SwitchHarry() {
+  TalkingAvatarCharacter = "harry"
+  TalkingAvatarStyle = "formal"
+
 }
 
 function removeDocumentReferences(str) {
