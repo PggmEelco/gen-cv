@@ -49,50 +49,14 @@ functions = [
         }
     },
     {
-        "name": "get_order_details",
-        "description": "Check customer account for expected delivery date of existing orders based on the provided parameters",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "account_id": {
-                    "type": "number",
-                    "description": "Four digit account number (i.e., 1005, 2345, etc.)"
-                },
-            },
-            "required": ["account_id"],
-        }
-    },
-    {
-        "name": "order_product",
-        "description": "Order a product based on the provided parameters",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "account_id": {
-                    "type": "number",
-                    "description": "Four digit account number (i.e., 1005, 2345, etc.)"
-                },
-                "product_name": {
-                    "type": "string",
-                    "description": "Name of the product to order (i.e., Elysian Voyager, Terra Roamer, AceMaster 3000, Server & Style)"
-                },
-                "quantity": {
-                    "type": "number",
-                    "description": "Quantity of the product to order (i.e., 1, 2, etc.)"
-                }
-            },
-            "required": ["account_id", "product_name", "quantity"],
-        }
-    },
-        {
-        "name": "get_product_information",
-        "description": "Find information about a product based on a user question. Use only if the requested information if not already available in the conversation context.",
+        "name": "get_pension_information",
+        "description": "Find information about pensions based on a user question. Use only if the requested information if not already available in the conversation context.",
         "parameters": {
             "type": "object",
             "properties": {
                 "user_question": {
                     "type": "string",
-                    "description": "User question (i.e., do you have tennis shoes for men?, etc.)"
+                    "description": "User question (i.e., what happens with my pension when I get sick?, etc.)"
                 },
             },
             "required": ["user_question"],
@@ -121,9 +85,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         available_functions = {
                 "get_bonus_points": get_bonus_points,
-                "get_order_details": get_order_details,
-                "order_product": order_product,
-                "get_product_information": get_product_information,
+                "get_pension_information": get_pension_information,
         }
         function_to_call = available_functions[function_name] 
 
@@ -141,16 +103,16 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "content": None
         })
 
-        if function_to_call == get_product_information:
-            product_info = json.loads(function_response)
-            # show product information after search for a different product that the current one
-            # if product_info['product_image_file'] != current_product_image:
+        # if function_to_call == get_product_information:
+        #     product_info = json.loads(function_response)
+        #     # show product information after search for a different product that the current one
+        #     # if product_info['product_image_file'] != current_product_image:
                 
-            products = [display_product_info(product_info)]
-            current_product_image = product_info['product_image_file']
+        #     products = [display_product_info(product_info)]
+        #     current_product_image = product_info['product_image_file']
             
-            # return only product description to LLM to avoid chatting about prices and image files 
-            function_response = product_info['description']
+        #     # return only product description to LLM to avoid chatting about prices and image files 
+        #     function_response = product_info['description']
 
         messages.append({
             "role": "function",
@@ -363,6 +325,29 @@ def get_product_information(user_question, categories='*', top_k=1):
         "select": "tagline, description, original_price, special_offer, product_image_file",
     }
 
+def get_pension_information(user_question, categories='*', top_k=1):
+    """ Vectorize user query to search Cognitive Search vector search on index_name. Optional filter on categories field. """
+     
+    url = f"{search_endpoint}/indexes/{search_index_name}/docs/search?api-version={search_api_version}"
+
+    headers = {
+        "Content-Type": "application/json",
+        "api-key": f"{search_key}",
+    }
+    
+    vector = generate_embeddings(user_question)
+
+    data = {
+        "vectors": [
+            {
+                "value": vector,
+                "fields": "answer_vector",
+                "k": top_k
+            },
+        ],
+        "select": "answer, keywords",
+    }    
+
     # optional filtered search
     if categories != '*':
         data["filter"] = f"category eq '{categories}'"
@@ -374,11 +359,8 @@ def get_product_information(user_question, categories='*', top_k=1):
     product_data = results_json['value'][0] # hard limit to top result for now
 
     response_data = {
-        "tagline": product_data.get('tagline'),
-        "description": product_data.get('description'),
-        "original_price": product_data.get('original_price'),
-        "special_offer": product_data.get('special_offer'),
-        "product_image_file": product_data.get('product_image_file'),
+        "answer": product_data.get('answer'),
+        "keywords": product_data.get('keywords'),
     }
     return json.dumps(response_data)
 
