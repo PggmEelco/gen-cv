@@ -263,11 +263,12 @@ window.speak = (text) => {
   async function speak(text) {
     addToConversationHistory(text, 'dark')
 
-    fetch("/api/detectLanguage?text=" + text, {
-      method: "POST"
-    })
-      .then(response => response.text())
-      .then(async language => {
+    // fetch("/api/detectLanguage?text=" + text, {
+    //   method: "POST"
+    // })
+    //   .then(response => response.text())
+    //   .then(async language => {
+        language = "nl-NL";
         console.log(`Detected language: ${language}`);
 
         const generatedResult = await generateText(text);
@@ -291,11 +292,11 @@ window.speak = (text) => {
               }
             }
           }
-        })
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+        });
+      // })
+      // .catch(error => {
+      //   console.error('Error:', error);
+      // });
   }
   speak(text);
 }
