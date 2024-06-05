@@ -20,8 +20,8 @@ const IceServerUrl = "turn:relay.communication.microsoft.com:3478" // Fill your 
 let IceServerUsername
 let IceServerCredential
 
-let TalkingAvatarCharacter = "lisa"
-let TalkingAvatarStyle = "casual-sitting"
+let TalkingAvatarCharacter = "meg"
+let TalkingAvatarStyle = "formal"
 
 const Voice = "en-US-AvaMultilingualNeural"
 const GreetingLanguage = "nl-NL"
