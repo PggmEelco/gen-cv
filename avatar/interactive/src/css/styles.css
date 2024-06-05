@@ -94,7 +94,7 @@ body {
 }
 
 .main {
-    background: linear-gradient(180deg, rgba(43, 78, 98, 0.09) 0%, rgba(34, 63, 81, 0.80) 18.23%);
+    background: linear-gradient(180deg, rgba(43, 78, 98, 0.01) 0%, rgba(34, 63, 81, 0.80) 58.23%);
     padding: 1em;
     padding-bottom: 0px;
     height: 100%;
@@ -121,6 +121,10 @@ h4,
 h5,
 h6 {
     color: white;
+}
+
+.title {
+    text-shadow: 2px 2px 4px #000000;
 }
 
 button {
@@ -529,7 +533,7 @@ input:checked+.slider:before {
 .header__title {
     font-size: 22px;
     font-weight: 600;
-    margin-left: 3px
+    margin-left: 22px
 }
 
 .menu-items {

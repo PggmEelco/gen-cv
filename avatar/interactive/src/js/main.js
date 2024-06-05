@@ -213,7 +213,7 @@ async function greeting() {
   var greeting = "Hallo, mijn naam is Lisa. Waar kan ik je mee helpen?"
   addToConversationHistory(greeting, "light")
 
-  let spokenText = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'><voice xml:lang='${GreetingLanguage}' xml:gender='Female' name='${Voice}'>${greeting}</voice></speak>`
+  let spokenText = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='en-US'><voice xml:lang='${GreetingLanguage}' xml:gender='Female' name='${Voice}'><lang xml:lang="${GreetingLanguage}">${greeting}</lang></voice></speak>`
   avatarSynthesizer.speakSsmlAsync(spokenText, (result) => {
     if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
       console.log("Speech synthesized to speaker for text [ " + spokenText + " ]. Result ID: " + result.resultId)
