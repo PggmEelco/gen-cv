@@ -22,6 +22,7 @@ let IceServerCredential
 
 const TalkingAvatarCharacter = "lisa"
 const TalkingAvatarStyle = "casual-sitting"
+
 const Voice = "en-US-AvaMultilingualNeural"
 const GreetingLanguage = "nl-NL"
 
@@ -38,6 +39,11 @@ var peerConnection
 var previousAnimationFrameTimestamp = 0
 
 messages = [{ "role": "system", "content": system_prompt }];
+
+function SwitchMeg() {
+  TalkingAvatarCharacter = "meg"
+  TalkingAvatarStyle = "formal"
+}
 
 function removeDocumentReferences(str) {
   // Regular expression to match [docX]
